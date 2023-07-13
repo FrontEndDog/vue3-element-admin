@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^20.4.2",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "element-plus": "^2.3.7",
