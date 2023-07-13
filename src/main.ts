@@ -2,11 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 const app = createApp(App)
 
-//引入样式初始化
-import 'normalize.css'
-
 //引入全局样式
-import '@/styles/index.scss'
+import '@/styles/index.css'
 
 //引入路由
 import router from '@/router'
