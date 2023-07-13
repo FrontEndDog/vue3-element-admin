@@ -1,6 +1,8 @@
 <template>
   <el-container class="h-full">
-    <el-aside>Aside</el-aside>
+    <el-aside>
+      <Aside></Aside>
+    </el-aside>
     <el-container>
       <el-header>Header</el-header>
       <el-main>
@@ -10,4 +12,6 @@
   </el-container>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Aside from './components/Aside.vue'
+</script>

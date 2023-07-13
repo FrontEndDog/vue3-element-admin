@@ -14,4 +14,8 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 app.use(ElementPlus)
 
+//引入全局组件
+import components from '@/components'
+app.use(components)
+
 app.mount('#app')
