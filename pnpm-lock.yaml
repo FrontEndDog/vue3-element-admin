@@ -52,6 +52,9 @@ devDependencies:
   prettier:
     specifier: ^3.0.0
     version: 3.0.0
+  sass:
+    specifier: ^1.63.6
+    version: 1.63.6
   stylelint:
     specifier: ^15.10.1
     version: 15.10.1
@@ -63,7 +66,7 @@ devDependencies:
     version: 5.1.6
   vite:
     specifier: ^4.4.3
-    version: 4.4.3(@types/node@20.4.2)
+    version: 4.4.3(@types/node@20.4.2)(sass@1.63.6)
   vue-tsc:
     specifier: ^1.8.4
     version: 1.8.4(typescript@5.1.6)
@@ -678,7 +681,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.3(@types/node@20.4.2)
+      vite: 4.4.3(@types/node@20.4.2)(sass@1.63.6)
       vue: 3.3.4
     dev: true
 
@@ -2306,6 +2309,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immutable@4.3.1:
+    resolution: {integrity: sha512-lj9cnmB/kVS0QHsJnYKD1uo3o39nrbKxszjnqS9Fr6NB7bZzW45U6WSGBPKXDL/CvDKqDNPA4r3DoDQ8GTxo2A==}
+    dev: true
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -3648,6 +3655,16 @@ packages:
       regexp-tree: 0.1.27
     dev: true
 
+  /sass@1.63.6:
+    resolution: {integrity: sha512-MJuxGMHzaOW7ipp+1KdELtqKbfAWbH7OLIdoSMnVe3EXPMTmxTmlaZDCTsgIpPCs3w99lLo9/zDKkOrJuT5byw==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.1
+      source-map-js: 1.0.2
+    dev: true
+
   /semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
     hasBin: true
@@ -4206,7 +4223,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite@4.4.3(@types/node@20.4.2):
+  /vite@4.4.3(@types/node@20.4.2)(sass@1.63.6):
     resolution: {integrity: sha512-IMnXQXXWgLi5brBQx/4WzDxdzW0X3pjO4nqFJAuNvwKtxzAmPzFE1wszW3VDpAGQJm3RZkm/brzRdyGsnwgJIA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -4238,6 +4255,7 @@ packages:
       esbuild: 0.18.11
       postcss: 8.4.25
       rollup: 3.26.2
+      sass: 1.63.6
     optionalDependencies:
       fsevents: 2.3.2
     dev: true

@@ -25,9 +25,5 @@
   //关闭vscode内置样式校验 不然使用tailwindcss会报错
   "less.validate": false,
   "css.validate": false,
-  "scss.validate": false,
-  //由于没有使用scss预处理器 在postcss.config.cjs中使用tailwindcss提供的nesting支持css嵌套，所以这里将css关联为scss类型，以获得编辑器高亮
-  "files.associations": {
-    "*.css": "scss"
-  }
+  "scss.validate": false
 }

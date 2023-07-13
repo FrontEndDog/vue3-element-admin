@@ -3,7 +3,7 @@ import App from './App.vue'
 const app = createApp(App)
 
 //引入全局样式
-import '@/styles/index.css'
+import '@/styles/index.scss'
 
 //引入路由
 import router from '@/router'
