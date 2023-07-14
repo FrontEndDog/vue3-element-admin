@@ -15,3 +15,9 @@
 <script setup lang="ts">
 import Aside from './components/Aside.vue'
 </script>
+
+<style lang="scss" scoped>
+.el-aside {
+  --el-aside-width: #{$aside-width};
+}
+</style>

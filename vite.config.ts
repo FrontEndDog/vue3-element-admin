@@ -13,4 +13,11 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use '@/styles/variables' as *;`,
+      },
+    },
+  },
 })
