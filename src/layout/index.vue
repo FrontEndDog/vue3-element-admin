@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import Aside from './components/Aside.vue'
+import Aside from './components/Aside/index.vue'
 </script>
 
 <style lang="scss" scoped>

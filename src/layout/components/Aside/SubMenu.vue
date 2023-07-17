@@ -1,0 +1,38 @@
+<template>
+  <el-menu-item v-if="routeItemShowChildren.length === 0" :index="routeItem.path">
+    <MenuItem :route-item="routeItem"></MenuItem>
+  </el-menu-item>
+
+  <SubMenu v-if="routeItemShowChildren.length === 1" :route-item="routeItemShowChildren[0]"></SubMenu>
+
+  <el-sub-menu v-if="routeItemShowChildren.length > 1" :index="routeItem.path">
+    <template #title>
+      <MenuItem :route-item="routeItem"></MenuItem>
+    </template>
+    <SubMenu v-for="(item, index) in routeItem.children" :key="index" :route-item="item"></SubMenu>
+  </el-sub-menu>
+</template>
+
+<script setup lang="ts">
+import { RouteRecordRaw } from 'vue-router'
+import { computed, type PropType } from 'vue'
+import MenuItem from './MenuItem.vue'
+defineOptions({
+  name: 'SubMenu',
+})
+const props = defineProps({
+  routeItem: {
+    type: Object as PropType<RouteRecordRaw>,
+    default: () => {
+      return {}
+    },
+  },
+})
+//当前路由可见的子路由
+const routeItemShowChildren = computed(() => {
+  if (!props.routeItem.children) return []
+  return props.routeItem.children.filter((item) => {
+    return !item.meta?.hidden && item.meta?.title
+  })
+})
+</script>
