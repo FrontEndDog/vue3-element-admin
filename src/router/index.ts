@@ -20,7 +20,6 @@ export const routes = [
   },
   {
     path: '/',
-    redirect: '/home',
     component: layout,
     children: [
       {
@@ -36,11 +35,13 @@ export const routes = [
     path: '/nested',
     component: layout,
     meta: { title: '路由嵌套' },
+    redirect: '/nested/menu1',
     children: [
       {
         path: '/nested/menu1',
         component: emptyLayout,
         meta: { title: '菜单1' },
+        redirect: '/nested/menu1/menu1-1',
         children: [
           {
             path: '/nested/menu1/menu1-1',
@@ -51,6 +52,7 @@ export const routes = [
             path: '/nested/menu1/menu1-2',
             component: emptyLayout,
             meta: { title: '菜单1-2' },
+            redirect: '/nested/menu1/menu1-2/menu1-2-1',
             children: [
               {
                 path: '/nested/menu1/menu1-2/menu1-2-1',

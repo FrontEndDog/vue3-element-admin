@@ -14,9 +14,7 @@
 import { useRoute, useRouter } from 'vue-router'
 import logo from '@/assets/vue.svg'
 import SubMenu from './SubMenu.vue'
-
 const route = useRoute()
-
 const router = useRouter()
 </script>
 
