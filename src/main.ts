@@ -18,4 +18,8 @@ app.use(router)
 import components from '@/components'
 app.use(components)
 
+//引入pinia状态管理
+import pinia from '@/store'
+app.use(pinia)
+
 app.mount('#app')
