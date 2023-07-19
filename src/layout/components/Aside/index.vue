@@ -30,9 +30,10 @@ const router = useRouter()
 .el-menu {
   --el-menu-bg-color: theme(colors.neutral.700); // 菜单背景色
   --el-menu-hover-bg-color: theme(colors.black / 20%); // 选项hover时的背景色
-  --el-menu-text-color: theme(colors.white / 80%); /* 选项文字颜色 */
+  --el-menu-text-color: theme(colors.white / 80%); // 选项文字颜色
   --el-menu-active-color: theme(colors.blue.500); // 选项选中是文字颜色
-  --el-menu-item-height: 48px; // 一个菜单的高度
+  --el-menu-border-color: theme(colors.neutral.700); // 菜单右侧边框的颜色
+  --el-menu-item-height: 56px; // 一个菜单的高度
 }
 
 .el-sub-menu .el-menu {

@@ -1,6 +1,7 @@
 <template>
   <el-scrollbar
     ref="scrollbarRef"
+    class="border-b border-neutral-200 shadow"
     wrap-class="scroll-smooth"
     view-class="inline-flex h-full items-center px-4"
     @wheel="handleScroll"

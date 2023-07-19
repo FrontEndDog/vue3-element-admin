@@ -1,15 +1,15 @@
 <template>
   <el-menu-item v-if="routeItemShowChildren.length === 0" :index="routeItem.path">
-    <MenuItem :route-item="routeItem"></MenuItem>
+    <MenuItem :route-item="routeItem" :root="root"></MenuItem>
   </el-menu-item>
 
-  <SubMenu v-if="routeItemShowChildren.length === 1" :route-item="routeItemShowChildren[0]"></SubMenu>
+  <SubMenu v-if="routeItemShowChildren.length === 1" :route-item="routeItemShowChildren[0]" :root="root"></SubMenu>
 
   <el-sub-menu v-if="routeItemShowChildren.length > 1" :index="routeItem.path">
     <template #title>
-      <MenuItem :route-item="routeItem"></MenuItem>
+      <MenuItem :route-item="routeItem" :root="false"></MenuItem>
     </template>
-    <SubMenu v-for="(item, index) in routeItem.children" :key="index" :route-item="item"></SubMenu>
+    <SubMenu v-for="(item, index) in routeItem.children" :key="index" :route-item="item" :root="false"></SubMenu>
   </el-sub-menu>
 </template>
 
@@ -17,6 +17,7 @@
 import { RouteRecordRaw } from 'vue-router'
 import { computed, type PropType } from 'vue'
 import MenuItem from './MenuItem.vue'
+
 defineOptions({
   name: 'SubMenu',
 })
@@ -26,6 +27,11 @@ const props = defineProps({
     default: () => {
       return {}
     },
+  },
+  //是否是一级菜单
+  root: {
+    type: Boolean,
+    default: true,
   },
 })
 //当前路由可见的子路由

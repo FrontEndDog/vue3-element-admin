@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-10 w-full items-center">
-    <Icon class="mr-1 text-2xl" icon="mdi-light:home"></Icon>
+    <Icon v-if="routeItem.meta?.icon || root" class="mr-1 text-2xl" :icon="routeItem.meta?.icon"></Icon>
     <div>{{ routeItem.meta?.title }}</div>
   </div>
 </template>
@@ -17,6 +17,10 @@ defineProps({
     default: () => {
       return {}
     },
+  },
+  root: {
+    type: Boolean,
+    default: false,
   },
 })
 </script>

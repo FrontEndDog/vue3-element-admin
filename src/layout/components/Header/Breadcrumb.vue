@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb separator="/" class="flex items-center border-b border-neutral-100 px-4">
+  <el-breadcrumb separator="/" class="flex items-center border-b border-neutral-200 px-4">
     <el-breadcrumb-item v-if="showHome" to="/home">首页</el-breadcrumb-item>
     <el-breadcrumb-item v-for="breadcrumb in breadcrumbList" :key="breadcrumb.path" :to="breadcrumb.path">
       {{ breadcrumb.meta.title }}

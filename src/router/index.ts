@@ -1,9 +1,6 @@
-import { createRouter, createWebHashHistory, RouterView } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import layout from '@/layout/index.vue'
-import { h } from 'vue'
 import { useHeaderTagStore } from '@/store/modules/headerTag'
-//空布局
-const emptyLayout = () => Promise.resolve(h(RouterView))
 
 export const routes = [
   {
@@ -15,7 +12,7 @@ export const routes = [
         path: '/home',
         name: 'Home',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页', affix: true },
+        meta: { title: '首页', icon: 'ic:baseline-home', affix: true },
       },
     ],
   },
@@ -35,12 +32,11 @@ export const routes = [
   {
     path: '/nested',
     component: layout,
-    meta: { title: '路由嵌套' },
+    meta: { title: '路由嵌套', icon: 'ic:baseline-sort' },
     redirect: '/nested/menu1',
     children: [
       {
         path: '/nested/menu1',
-        component: emptyLayout,
         meta: { title: '菜单1' },
         redirect: '/nested/menu1/menu1-1',
         children: [
@@ -51,7 +47,6 @@ export const routes = [
           },
           {
             path: '/nested/menu1/menu1-2',
-            component: emptyLayout,
             meta: { title: '菜单1-2' },
             redirect: '/nested/menu1/menu1-2/menu1-2-1',
             children: [
