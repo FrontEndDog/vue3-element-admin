@@ -1,2 +1,8 @@
-$header-height: 60px;
+// aside
 $aside-width: 250px;
+$aside-logo-height: 44px;
+
+// header
+$header-breadcrumb-height: $aside-logo-height;
+$header-tag-height: 36px;
+$header-height: $header-breadcrumb-height + $header-tag-height;

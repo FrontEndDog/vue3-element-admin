@@ -20,11 +20,11 @@ const router = useRouter()
 
 <style lang="scss">
 .logo {
-  height: #{$header-height};
+  height: $aside-logo-height;
 }
 
 .aside-scrollbar {
-  height: calc(100vh - #{$header-height});
+  height: calc(100vh - $aside-logo-height);
 }
 
 .el-menu {

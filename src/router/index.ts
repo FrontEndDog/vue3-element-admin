@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouterView } from 'vue-router'
 import layout from '@/layout/index.vue'
 import { h } from 'vue'
+import { useHeaderTagStore } from '@/store/modules/headerTag'
 //空布局
 const emptyLayout = () => Promise.resolve(h(RouterView))
 
@@ -14,7 +15,7 @@ export const routes = [
         path: '/home',
         name: 'Home',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页' },
+        meta: { title: '首页', affix: true },
       },
     ],
   },
@@ -88,6 +89,8 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  const headerTagStore = useHeaderTagStore()
+  headerTagStore.add(to)
   next()
 })
 
