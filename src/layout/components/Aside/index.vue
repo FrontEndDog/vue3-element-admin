@@ -38,5 +38,10 @@ const router = useRouter()
 
 .el-sub-menu .el-menu {
   --el-menu-bg-color: theme(colors.neutral.800); // 子菜单背景色
+  &:not(.el-sub-menu .el-menu .el-menu) {
+    margin-left: 20px;
+    overflow: hidden;
+    border-radius: 20px 0 0 20px;
+  }
 }
 </style>
