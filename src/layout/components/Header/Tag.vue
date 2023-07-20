@@ -12,6 +12,7 @@
       class="ml-1 cursor-pointer first:ml-0"
       :effect="route.path === tag.path ? 'dark' : 'plain'"
       :closable="!tag.meta.affix && tags.length !== 1"
+      disable-transitions
       @click="handleClick(tag)"
       @close="handleClose(tag)"
     >

@@ -20,11 +20,11 @@
 @import 'animate.css';
 
 .fade-enter-active {
-  animation-duration: 0.15s;
-  animation-delay: 0.15s;
+  animation-duration: 0.3s;
+  animation-delay: 0.3s;
 }
 
 .fade-leave-active {
-  animation-duration: 0.15s;
+  animation-duration: 0.3s;
 }
 </style>
