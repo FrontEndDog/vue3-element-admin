@@ -1,6 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 import layout from '@/layout/index.vue'
 import { useHeaderTagStore } from '@/store/modules/headerTag'
+
+const modules: Record<string, { default: RouteRecordRaw }> = import.meta.glob('./modules/*.ts', { eager: true })
+const routers = Object.values(modules).map((item) => item.default)
 
 export const routes = [
   {
@@ -16,60 +19,12 @@ export const routes = [
       },
     ],
   },
-
+  ...routers,
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue'),
     meta: { title: '登录', hidden: true },
-  },
-
-  {
-    path: '/nested',
-    component: layout,
-    meta: { title: '路由嵌套', icon: 'ic:baseline-sort' },
-    redirect: '/nested/menu1',
-    children: [
-      {
-        path: '/nested/menu1',
-        meta: { title: '菜单1' },
-        redirect: '/nested/menu1/menu1-1',
-        children: [
-          {
-            path: '/nested/menu1/menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1.vue'),
-            meta: { title: '菜单1-1' },
-          },
-          {
-            path: '/nested/menu1/menu1-2',
-            meta: { title: '菜单1-2' },
-            redirect: '/nested/menu1/menu1-2/menu1-2-1',
-            children: [
-              {
-                path: '/nested/menu1/menu1-2/menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1.vue'),
-                meta: { title: '菜单1-2-1' },
-              },
-              {
-                path: '/nested/menu1/menu1-2/menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2.vue'),
-                meta: { title: '菜单1-2-2' },
-              },
-            ],
-          },
-          {
-            path: '/nested/menu1/menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3.vue'),
-            meta: { title: '菜单1-3' },
-          },
-        ],
-      },
-      {
-        path: '/nested/menu2',
-        component: () => import('@/views/nested/menu2.vue'),
-        meta: { title: '菜单2' },
-      },
-    ],
   },
 ]
 
