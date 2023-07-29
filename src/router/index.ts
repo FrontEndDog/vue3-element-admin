@@ -2,8 +2,22 @@ import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 import layout from '@/layout/index.vue'
 import { useHeaderTagStore } from '@/store/modules/headerTag'
 
-const modules: Record<string, { default: RouteRecordRaw }> = import.meta.glob('./modules/*.ts', { eager: true })
-const routers = Object.values(modules).map((item) => item.default)
+type Modules = Record<string, { default: RouteRecordRaw | RouteRecordRaw[] }>
+
+const modules: Modules = import.meta.glob('./modules/*.ts', {
+  eager: true,
+})
+
+const routers = Object.values(modules).reduce<RouteRecordRaw[]>((result, item) => {
+  if (!item.default) return result
+  if (Array.isArray(item.default)) {
+    result.push(...item.default)
+    return result
+  } else {
+    result.push(item.default)
+    return result
+  }
+}, [])
 
 export const routes = [
   {
@@ -19,13 +33,13 @@ export const routes = [
       },
     ],
   },
-  ...routers,
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue'),
     meta: { title: '登录', hidden: true },
   },
+  ...routers,
 ]
 
 export const router = createRouter({

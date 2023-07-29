@@ -1,6 +1,7 @@
 import layout from '@/layout/index.vue'
+import { RouteRecordRaw } from 'vue-router'
 
-export default {
+const router: RouteRecordRaw = {
   path: '/nested',
   component: layout,
   meta: { title: '路由嵌套', icon: 'ic:baseline-sort' },
@@ -47,3 +48,5 @@ export default {
     },
   ],
 }
+
+export default router
