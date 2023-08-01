@@ -2,19 +2,20 @@ import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 import layout from '@/layout/index.vue'
 import { useHeaderTagStore } from '@/store/modules/headerTag'
 
-type Modules = Record<string, { default: RouteRecordRaw | RouteRecordRaw[] }>
+type Modules = Record<string, RouteRecordRaw | RouteRecordRaw[]>
 
 const modules: Modules = import.meta.glob('./modules/*.ts', {
   eager: true,
+  import: 'default',
 })
 
 const routers = Object.values(modules).reduce<RouteRecordRaw[]>((result, item) => {
-  if (!item.default) return result
-  if (Array.isArray(item.default)) {
-    result.push(...item.default)
+  if (!item) return result
+  if (Array.isArray(item)) {
+    result.push(...item)
     return result
   } else {
-    result.push(item.default)
+    result.push(item)
     return result
   }
 }, [])
