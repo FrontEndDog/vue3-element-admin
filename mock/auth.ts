@@ -4,7 +4,7 @@ import { success } from './utils'
 
 const mock: MockMethod[] = [
   {
-    url: '/login',
+    url: '/api/login',
     method: 'post',
     response: () => {
       const token = v4()

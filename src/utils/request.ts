@@ -3,6 +3,7 @@ import { Success, Error } from 'mock/utils'
 
 import api from '@/api'
 const axiosInstance = axios.create({
+  baseURL: '/api',
   timeout: 10000,
 })
 

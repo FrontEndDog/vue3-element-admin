@@ -12,7 +12,7 @@
           <el-input v-model="loginForm.password" placeholder="密码" password></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button class="mx-auto" type="primary"> 登录 </el-button>
+          <el-button class="mx-auto" type="primary" @click="sendMock"> 登录 </el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -21,7 +21,8 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-
+import { useRequest } from 'vue-hooks-plus'
+import api from '@/api'
 defineOptions({
   name: 'Login',
 })
@@ -31,8 +32,8 @@ const loginForm = reactive({
   password: '',
 })
 
-import { useRequest } from 'vue-hooks-plus'
-import api from '@/api'
-const { data } = useRequest(() => api.auth.login(loginForm))
-console.log(data)
+const sendMock = () => {
+  const { data } = useRequest(() => api.auth.login(loginForm))
+  console.log(data)
+}
 </script>

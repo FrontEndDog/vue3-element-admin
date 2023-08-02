@@ -23,3 +23,9 @@ import pinia from '@/store'
 app.use(pinia)
 
 app.mount('#app')
+
+if (process.env.NODE_ENV === 'production') {
+  import('./mockProdServer').then(({ setupProdMockServer }) => {
+    setupProdMockServer()
+  })
+}
