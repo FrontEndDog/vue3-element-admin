@@ -1,10 +1,10 @@
-export type loginParam = {
+export type LoginParam = {
   account: string
   password: string
 }
 
-export type loginResponse = {
+export type LoginResponse = {
   token: string
   refreshToken: string
-  expires: number
+  tokenExpiresTime: number
 }

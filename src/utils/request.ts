@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { Success, Error } from 'mock/utils'
-
+import { MockResponse } from 'mock/utils'
 import api from '@/api'
+import { ElMessage } from 'element-plus'
+
 const axiosInstance = axios.create({
   baseURL: '/api',
   timeout: 10000,
@@ -28,12 +29,19 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error)
   },
 )
+
 const request = async <T = unknown, D = unknown>(url: string, options?: AxiosRequestConfig<D>) => {
-  const response = await axiosInstance<unknown, AxiosResponse<Success<T> | Error<T>, D>, D>({
+  const { data } = await axiosInstance<unknown, AxiosResponse<MockResponse<T>, D>, D>({
     url,
     ...options,
   })
 
-  return response.data.data
+  if (data.code !== 0) {
+    data.msg && ElMessage.error(data.msg)
+    return Promise.reject(data)
+  }
+
+  return data.data
 }
+
 export { axiosInstance, request, api }

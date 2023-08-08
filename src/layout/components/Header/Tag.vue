@@ -4,14 +4,14 @@
     class="border-b border-neutral-200 shadow"
     wrap-class="scroll-smooth"
     view-class="inline-flex h-full items-center px-4"
-    @wheel="handleScroll"
+    @wheel.passive="handleScroll"
   >
     <el-tag
       v-for="tag in tags"
       :key="tag.path"
       class="ml-1 cursor-pointer first:ml-0"
       :effect="route.path === tag.path ? 'dark' : 'plain'"
-      :closable="!tag.meta.affix && tags.length !== 1"
+      :closable="tags.length !== 1"
       disable-transitions
       @click="handleClick(tag)"
       @close="handleClose(tag)"
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { useHeaderTagStore } from '@/store/modules/headerTag'
+import { useHeaderTagStore } from '@/store'
 import { ref, computed } from 'vue'
 import { useRouter, useRoute, RouteLocationNormalized } from 'vue-router'
 const route = useRoute()

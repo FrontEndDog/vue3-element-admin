@@ -39,14 +39,14 @@ const props = defineProps({
 
 //当前路由是否可见
 const canShowRouteItem = computed(() => {
-  return (routeItemShowChildren.value.length || props.routeItem.meta?.title) && !props.routeItem.meta?.hidden
+  return (routeItemShowChildren.value.length || props.routeItem.meta?.title) && !props.routeItem.meta?.hideInMenu
 })
 
 //当前路由下可见的子路由
 const routeItemShowChildren = computed(() => {
   if (!props.routeItem.children) return []
   return props.routeItem.children.filter((item) => {
-    return !item.meta?.hidden && item.meta?.title
+    return !item.meta?.hideInMenu && item.meta?.title
   })
 })
 </script>

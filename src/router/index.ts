@@ -1,6 +1,6 @@
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 import layout from '@/layout/index.vue'
-import { useHeaderTagStore } from '@/store/modules/headerTag'
+import { useHeaderTagStore, useAuthStore } from '@/store'
 
 type Modules = Record<string, RouteRecordRaw | RouteRecordRaw[]>
 
@@ -30,7 +30,7 @@ export const routes = [
         path: '/home',
         name: 'Home',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页', icon: 'ic:baseline-home', affix: true },
+        meta: { title: '首页', icon: 'ic:baseline-home' },
       },
     ],
   },
@@ -38,7 +38,7 @@ export const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue'),
-    meta: { title: '登录', hidden: true },
+    meta: { title: '登录', hideInMenu: true, noAffix: true },
   },
   ...routers,
 ]
@@ -52,6 +52,29 @@ router.beforeEach((to, from, next) => {
   const headerTagStore = useHeaderTagStore()
   headerTagStore.add(to)
   next()
+})
+
+router.beforeEach((to, from, next) => {
+  //如果跳转的页面无需登录，则直接跳转
+  if (to.meta.requiresAuth === false) {
+    return next()
+  }
+  const authStore = useAuthStore()
+
+  //已登录
+  if (authStore.isLogin) {
+    if (to.path === '/login') {
+      return next('/')
+    }
+    return next()
+  }
+
+  //未登录
+  if (to.path === '/login') {
+    return next()
+  }
+
+  next({ path: '/login' })
 })
 
 export default router

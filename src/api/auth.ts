@@ -1,8 +1,8 @@
 import { request } from '@/utils/request'
-import { loginParam, loginResponse } from './auth.d'
+import { LoginParam, LoginResponse } from './auth.d'
 
-export async function login(data: loginParam) {
-  return request<loginResponse, loginParam>('/login', {
+export async function login(data: LoginParam) {
+  return request<LoginResponse, LoginParam>('/login', {
     data,
     method: 'post',
   })

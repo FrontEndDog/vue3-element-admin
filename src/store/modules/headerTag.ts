@@ -5,6 +5,7 @@ export const useHeaderTagStore = defineStore('headerTag', () => {
   const tags: RouteLocationNormalized[] = reactive([])
   //添加标签页
   const add = (tag: RouteLocationNormalized) => {
+    if (tag.meta.noAffix) return
     if (tags.some((item) => item.path === tag.path)) return
     tags.push(tag)
   }

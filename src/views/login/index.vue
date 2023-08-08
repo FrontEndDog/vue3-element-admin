@@ -23,27 +23,31 @@
 import { reactive, ref } from 'vue'
 import { useRequest } from 'vue-hooks-plus'
 import api from '@/api'
-
+import { useAuthStore } from '@/store'
+import { useRouter } from 'vue-router'
 defineOptions({
   name: 'Login',
 })
 
+const router = useRouter()
 const rules = {
   account: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
   password: [{ required: true, message: '密码不能为空', trigger: 'blur' }],
 }
 
 const loginModel = reactive({
-  account: '',
-  password: '',
+  account: 'admin',
+  password: '123456',
 })
 
 const { data, runAsync: handelLogin } = useRequest(() => api.auth.login(loginModel), { manual: true })
 
 const loginFromRef = ref()
 const sendMock = async () => {
+  await loginFromRef.value.validate()
   await handelLogin()
-  // await loginFromRef.value
-  console.log(data)
+  const authStore = useAuthStore()
+  authStore.loginSuccess(data.value)
+  router.push('/')
 }
 </script>
