@@ -9,7 +9,7 @@
           <el-input v-model="loginModel.account" placeholder="账号"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="loginModel.password" placeholder="密码" password></el-input>
+          <el-input v-model="loginModel.password" type="password" placeholder="密码" show-password></el-input>
         </el-form-item>
         <el-form-item>
           <el-button class="mx-auto" type="primary" @click="sendMock"> 登录 </el-button>
