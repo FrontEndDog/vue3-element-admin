@@ -40,6 +40,18 @@ export const routes = [
     component: () => import('@/views/login/index.vue'),
     meta: { title: '登录', hideInMenu: true, noAffix: true },
   },
+  {
+    path: '/',
+    component: layout,
+    children: [
+      {
+        path: '/map',
+        name: 'Map',
+        component: () => import('@/views/map/index.vue'),
+        meta: { title: '简易地图', icon: 'ic:baseline-map' },
+      },
+    ],
+  },
   ...routers,
 ]
 
